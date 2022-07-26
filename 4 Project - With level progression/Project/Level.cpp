@@ -186,11 +186,7 @@ bool Level::ConvertLevel(int* playerX, int* playerY)
 				break;
 			case 'A':
 				m_pLevelData[index] = ' ';
-				m_pActors.push_back(new Vehicle(x, y, -4 + rand() % 5));
-				break;
-			case '^':
-				m_pLevelData[index] = ' ';
-				m_pActors.push_back(new Vehicle(x, y, 2 + rand() % 5));
+				m_pActors.push_back(new Vehicle(x, y));
 				break;
 			default:
 				cout << "Invalid character in level file: " << m_pLevelData[index] << endl;

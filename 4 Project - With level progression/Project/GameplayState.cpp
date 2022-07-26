@@ -10,6 +10,7 @@
 #include "Door.h"
 #include "Money.h"
 #include "Goal.h"
+#include "Vehicle.h"
 #include "AudioManager.h"
 #include "Utility.h"
 #include "StateMachineExampleGame.h"
@@ -222,6 +223,35 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
 			m_player.SetPosition(newPlayerX, newPlayerY);
 			m_beatLevel = true;
 			break;
+		}
+		case ActorType::Vehicle:
+		{
+			Vehicle* collidedVehicle = dynamic_cast<Vehicle*>(collidedActor);
+			assert(collidedVehicle);
+			if (!m_pLevel->IsWall(newPlayerX, newPlayerY)) {	//must check to see if there is a wall (wrap in an if statement)
+				//check y
+				if (m_player.GetYPosition() - newPlayerY < 0) {
+					collidedVehicle->SetPosition(collidedVehicle->GetXPosition(),collidedVehicle->GetYPosition() + 1);
+				}
+				else if (m_player.GetYPosition() - newPlayerY > 0) {
+					collidedVehicle->SetPosition(collidedVehicle->GetXPosition(), collidedVehicle->GetYPosition() - 1);
+				}
+				else if (m_player.GetXPosition() - newPlayerX < 0) {
+					collidedVehicle->SetPosition(collidedVehicle->GetXPosition() + 1, collidedVehicle->GetYPosition());
+				}
+				else if (m_player.GetXPosition() - newPlayerX > 0) {
+					collidedVehicle->SetPosition(collidedVehicle->GetXPosition() - 1, collidedVehicle->GetYPosition());
+				}
+				/*if (m_player.GetXPosition() != newPlayerX) {
+					collidedVehicle->SetPosition((m_player.GetXPosition() + newPlayerX) + collidedVehicle->GetXPosition(), collidedVehicle->GetYPosition());
+				}*/
+				//check x
+				m_player.SetPosition(newPlayerX, newPlayerY);
+			}
+			
+			
+
+
 		}
 		default:
 			break;

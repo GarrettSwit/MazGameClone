@@ -11,7 +11,7 @@ class Vehicle : public PlacableActor
 	int worth;
 	int x =1 , y = 1;
 public:
-	Vehicle(int x, int y, int m_lives)
+	Vehicle(int x, int y)
 		: PlacableActor(x,y) {
 		isOn = true;
 		m_lives= true;
@@ -40,7 +40,7 @@ private:
 class Boat : public Vehicle {
 public:
 	Boat(int x, int y, int m_lives)
-		: Vehicle(x, y, m_lives)
+		: Vehicle(x, y)
 	{
 
 	}
@@ -54,7 +54,7 @@ private:
 class Car : public Vehicle {
 public:
 	Car(int x, int y, int m_lives)
-		: Vehicle(x, y, m_lives)
+		: Vehicle(x, y)
 	{
 
 	}
@@ -68,7 +68,7 @@ private:
 class Airplane : public Vehicle {
 public:
 	Airplane(int x, int y, int m_lives)
-		: Vehicle(x, y, m_lives)
+		: Vehicle(x, y)
 	{
 
 	}

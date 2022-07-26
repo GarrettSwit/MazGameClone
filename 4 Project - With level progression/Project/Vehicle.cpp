@@ -5,7 +5,7 @@
 
 void Vehicle::Draw()
 {
-	std::cout << "";
+	std::cout << "A";
 }
 void Boat::Draw() {
 	std::cout << "B";
