@@ -20,9 +20,6 @@ enum class ActorType
 	Key,
 	Money,
 	Player,
-	Airplane,
-	Car,
-	Boat,
 	Vehicle
 };
 

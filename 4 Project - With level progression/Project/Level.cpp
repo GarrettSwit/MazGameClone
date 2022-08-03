@@ -1,4 +1,5 @@
 #include <windows.h>
+#include "vld.h"
 #include <assert.h>
 #include <iostream>
 #include <fstream>

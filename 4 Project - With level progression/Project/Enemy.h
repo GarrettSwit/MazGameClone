@@ -8,6 +8,7 @@ public:
 	virtual ActorType GetType() override { return ActorType::Enemy; }
 	virtual void Draw() override;
 	virtual void Update() override;
+	
 
 protected:
 	void InitDirection();

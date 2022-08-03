@@ -1,5 +1,5 @@
 #include "GameplayState.h"
-
+#include "vld.h"
 #include <iostream>
 #include <conio.h>
 #include <windows.h>
@@ -242,10 +242,7 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
 				else if (m_player.GetXPosition() - newPlayerX > 0) {
 					collidedVehicle->SetPosition(collidedVehicle->GetXPosition() - 1, collidedVehicle->GetYPosition());
 				}
-				/*if (m_player.GetXPosition() != newPlayerX) {
-					collidedVehicle->SetPosition((m_player.GetXPosition() + newPlayerX) + collidedVehicle->GetXPosition(), collidedVehicle->GetYPosition());
-				}*/
-				//check x
+
 				m_player.SetPosition(newPlayerX, newPlayerY);
 			}
 			
@@ -265,6 +262,13 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
 	{
 		// wall collision, do nothing
 	}
+	
+		//if the enemy and vehicle collide then we need to stop the enemy from moving forward anymore 
+		//if the enemies next step collides with the vehicle
+	/*if (collidedEnemy->GetXPosition() + 1 == collidedVehicle->GetXPosition()) {
+		cout << "Collision present"<<endl;
+	}*/
+		//reverse the direction
 }
 
 void GameplayState::Draw()
@@ -311,8 +315,8 @@ void GameplayState::DrawHUD(const HANDLE& console)
 	cout << " key:";
 	if (m_player.HasKey())
 	{
-		m_player.GetKey()->Draw();
-	}
+		m_player.GetKey()->Draw(); // getting a read acces violation when completing the game while holding the green key
+	}								// trying to see why this fails upon a completion state
 	else
 	{
 		cout << " ";
