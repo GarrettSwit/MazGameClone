@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <fstream>
+#include <thread>
 
 using namespace std;
 
@@ -23,6 +24,8 @@ constexpr int kDownArrow = 80;
 constexpr int kEscape = 27;
 constexpr int kBackspace = 8;
 
+
+void DisplayLegend();
 void GetLevelDimensions(int& width, int& height);
 void DisplayLevel(char* pLevel, int width, int height, int cursorX, int cursorY);
 int GetIndexFromXY(int x, int y, int width);
@@ -32,11 +35,12 @@ void DisplayLeftBorder();
 void DisplayRightBorder();
 bool EditLevel(char* pLevel, int& cursorX, int& cursorY, int width, int height);
 void SaveLevel(char* pLevel, int width, int height);
-void DisplayLegend();
+
 void RunEditor(char* pLevel, int width, int height);
 
 int main()
 {
+	
 	char* pLevel = nullptr;
 	int levelWidth;
 	int levelHeight;
@@ -95,6 +99,7 @@ int main()
 		else if (input == 2)
 		{
 			// New Level
+
 			GetLevelDimensions(levelWidth, levelHeight);
 
 			pLevel = new char[levelWidth * levelHeight];
@@ -127,14 +132,15 @@ void RunEditor(char* pLevel, int width, int height)
 	{
 		system("cls");
 		DisplayLevel(pLevel, width, height, cursorX, cursorY);
-		DisplayLegend();
+		thread Mythread(DisplayLegend);
+		Mythread.join();
 		doneEditing = EditLevel(pLevel, cursorX, cursorY, width, height);
 	}
 
 	system("cls");
 	DisplayLevel(pLevel, width, height, -1, -1);
-
-	SaveLevel(pLevel, width, height);
+	thread ThreadAttempt1(SaveLevel, pLevel, width, height);
+	ThreadAttempt1.join();
 }
 
 void DisplayLegend()

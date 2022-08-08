@@ -1,5 +1,5 @@
 #include "MainMenuState.h"
-
+#include <thread>
 #include <iostream>
 #include <conio.h>
 
@@ -14,6 +14,8 @@ constexpr char kHighScore = '2';
 constexpr char kSettings = '3';
 constexpr char kQuit = '4';
 
+
+
 MainMenuState::MainMenuState(StateMachineExampleGame* pOwner)
 	: m_pOwner(pOwner)
 {
@@ -21,6 +23,7 @@ MainMenuState::MainMenuState(StateMachineExampleGame* pOwner)
 
 bool MainMenuState::Update(bool processInput)
 {
+	thread myThread;
 	bool shouldQuit = false;
 	if (processInput)
 	{

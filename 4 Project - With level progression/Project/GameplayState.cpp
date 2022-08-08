@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <assert.h>
+#include <thread>
 
 #include "Enemy.h"
 #include "Key.h"
@@ -63,6 +64,7 @@ void GameplayState::Enter()
 
 bool GameplayState::Update(bool processInput)
 {
+	
 	if (processInput && !m_beatLevel)
 	{
 		int input = _getch();

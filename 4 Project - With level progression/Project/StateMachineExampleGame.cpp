@@ -6,11 +6,14 @@
 #include "LoseState.h"
 #include "WinState.h"
 #include "Game.h"
+#include <thread>
+
 
 StateMachineExampleGame::StateMachineExampleGame(Game* pOwner)
 	: m_pOwner(pOwner)
 	, m_pCurrentState(nullptr)
 	, m_pNextState(nullptr)
+	
 {
 }
 
@@ -58,6 +61,7 @@ void StateMachineExampleGame::ChangeState(GameState* pNewState)
 
 void StateMachineExampleGame::LoadScene(SceneName scene)
 {
+	
 	switch (scene)
 	{
 	case SceneName::None:
